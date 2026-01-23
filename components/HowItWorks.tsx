@@ -6,7 +6,7 @@ const HowItWorks: React.FC = () => {
     <section className="min-h-screen py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-blue-50/30 dark:from-background-dark dark:to-background-dark flex flex-col justify-center items-center overflow-hidden">
       
       {/* Header */}
-      <header className="text-center mb-12 lg:mb-16 max-w-4xl mx-auto relative z-10">
+      <header className="text-center mb-12 lg:mb-28 max-w-4xl mx-auto relative z-10">
         <Reveal>
           <span className="inline-block py-1 px-4 rounded-full bg-primary/10 text-primary font-bold text-xs tracking-wider mb-6 shadow-sm uppercase">
             Passo a Passo
@@ -88,134 +88,138 @@ const HowItWorks: React.FC = () => {
         </div>
       </div>
 
-      {/* DESKTOP TIMELINE (SVG Wave) - Hidden on Mobile */}
-      <div className="hidden lg:block w-full overflow-x-auto pb-8 px-4 hide-scrollbar">
-        {/* Adjusted Height from 600px to 500px to prevent scrollbar issues */}
-        <div className="relative w-[1200px] h-[500px] mx-auto overflow-y-hidden">
+      {/* DESKTOP TIMELINE (Elastic Wave) - Hidden on Mobile */}
+      {/* Container fluido que mantém a proporção 2.5:1 para garantir que a curva SVG não distorça */}
+      <div className="hidden lg:block relative w-full max-w-6xl mx-auto aspect-[2.5/1] my-8">
+        
+        {/* SVG Background Layer */}
+        <svg 
+          className="absolute inset-0 w-full h-full z-0 pointer-events-none" 
+          viewBox="0 0 1200 500" 
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="lineGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+              <stop offset="0%" stopColor="#1E88C9" stopOpacity="0.2" />
+              <stop offset="50%" stopColor="#062C52" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#1E88C9" stopOpacity="0.2" />
+            </linearGradient>
+          </defs>
           
-          {/* SVG Wave Line Container - Set z-0 to be behind everything */}
-          <svg className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1200 500">
-            <defs>
-              <linearGradient id="lineGradient" x1="0%" x2="100%" y1="0%" y2="0%">
-                <stop offset="0%" stopColor="#1E88C9" stopOpacity="0.4" /> {/* Brand Blue - Low Opacity */}
-                <stop offset="50%" stopColor="#062C52" stopOpacity="0.6" /> {/* Brand Dark */}
-                <stop offset="100%" stopColor="#1E88C9" stopOpacity="0.4" /> {/* Brand Blue */}
-              </linearGradient>
-            </defs>
-            
-            {/* 1. Base Path (The background wire) - Adjusted Y max from 400 to 350 */}
-            <path 
-              d="M 150,100 C 300,100 300,350 450,350 C 600,350 600,100 750,100 C 900,100 900,350 1050,350" 
-              fill="none" 
-              stroke="url(#lineGradient)" 
-              strokeLinecap="round" 
-              strokeWidth="12"
-              className="drop-shadow-xl"
-              style={{ filter: 'blur(1px)' }}
-            />
-            
-            {/* 2. LED Pulse Path (The animated light) - Adjusted Y max from 400 to 350 */}
-            <path 
-              d="M 150,100 C 300,100 300,350 450,350 C 600,350 600,100 750,100 C 900,100 900,350 1050,350" 
-              fill="none" 
-              stroke="white" 
-              strokeLinecap="round" 
-              strokeWidth="4"
-              className="animate-led-flow drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]"
-            />
-          </svg>
+          {/* Base Path */}
+          <path 
+            d="M 150,100 C 300,100 300,350 450,350 C 600,350 600,100 750,100 C 900,100 900,350 1050,350" 
+            fill="none" 
+            stroke="url(#lineGradient)" 
+            strokeLinecap="round" 
+            strokeWidth="8"
+            className="drop-shadow-sm"
+          />
+          
+          {/* LED Pulse Path */}
+          <path 
+            d="M 150,100 C 300,100 300,350 450,350 C 600,350 600,100 750,100 C 900,100 900,350 1050,350" 
+            fill="none" 
+            stroke="white" 
+            strokeLinecap="round" 
+            strokeWidth="3"
+            strokeOpacity="0.8"
+            className="animate-led-flow drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]"
+          />
+        </svg>
 
-          {/* Step 1: UP (Text Top, Bubble Bottom) */}
-          <Reveal 
-            delay={100} 
-            className="absolute flex flex-col items-center z-10 w-[200px]" 
-            style={{ left: '50px', top: '0' }}
-          >
-            <div className="w-[240px] text-center mb-6">
-              <h3 className="font-display text-xl font-bold text-secondary dark:text-white mb-2">Avaliação clínica completa</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+        {/* 
+            NODES POSITIONING STRATEGY:
+            Using percentages based on the SVG coordinates (1200x500).
+            Node 1 (Peak):   x=150 (12.5%), y=100 (20%)
+            Node 2 (Trough): x=450 (37.5%), y=350 (70%)
+            Node 3 (Peak):   x=750 (62.5%), y=100 (20%)
+            Node 4 (Trough): x=1050 (87.5%), y=350 (70%)
+        */}
+
+        {/* NODE 1 - TOP (Peak) */}
+        <div className="absolute top-[20%] left-[12.5%] -translate-x-1/2 -translate-y-1/2 z-10">
+          <Reveal delay={100} className="flex flex-col items-center group cursor-default">
+            {/* Text ABOVE the node */}
+            <div className="absolute bottom-full mb-8 w-64 text-center">
+              <h3 className="text-xl font-bold text-secondary dark:text-white mb-2 leading-tight">Avaliação clínica completa</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
                 Análise detalhada da ferida, histórico médico e fatores que influenciam a cicatrização.
               </p>
             </div>
-            {/* Circle Container: Added bg-white and z-10 to mask the line behind */}
-            <div className="w-[200px] h-[200px] rounded-full relative z-10 glass border border-white/80 dark:border-slate-700 shadow-2xl flex items-center justify-center transition-transform hover:scale-105 duration-300 group bg-white dark:bg-slate-900">
-              <span className="absolute top-4 font-display text-6xl font-black text-primary/40 dark:text-primary/40 z-0">01</span>
-              <div className="relative z-10 text-primary dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
-                <span className="material-symbols-rounded text-7xl drop-shadow-lg text-accent">stethoscope</span>
-              </div>
+            
+            {/* Minimalist Node */}
+            <div className="w-20 h-20 bg-white dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none flex items-center justify-center transition-transform duration-500 group-hover:scale-110 relative">
+              <span className="material-symbols-rounded text-3xl text-primary dark:text-blue-400">stethoscope</span>
+              {/* Subtle Number Badge */}
+              <div className="absolute -top-1 -right-1 w-7 h-7 bg-blue-50 dark:bg-slate-700 rounded-full flex items-center justify-center text-xs font-bold text-primary border border-white dark:border-slate-600">01</div>
             </div>
           </Reveal>
+        </div>
 
-          {/* Step 2: DOWN (Bubble Top, Text Bottom) - Adjusted Top from 300px to 250px */}
-          <Reveal 
-            delay={300} 
-            className="absolute flex flex-col items-center z-10 w-[200px]" 
-            style={{ left: '350px', top: '250px' }}
-          >
-             {/* Circle Container: Added bg-white and z-10 to mask the line behind */}
-            <div className="w-[200px] h-[200px] rounded-full relative z-10 glass border border-white/80 dark:border-slate-700 shadow-2xl flex items-center justify-center transition-transform hover:scale-105 duration-300 mb-6 group bg-white dark:bg-slate-900">
-              <span className="absolute top-4 font-display text-6xl font-black text-primary/40 dark:text-primary/40 z-0">02</span>
-              <div className="relative z-10 text-primary dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
-                <span className="material-symbols-rounded text-7xl drop-shadow-lg text-accent">assignment</span>
-              </div>
+        {/* NODE 2 - BOTTOM (Trough) */}
+        <div className="absolute top-[70%] left-[37.5%] -translate-x-1/2 -translate-y-1/2 z-10">
+          <Reveal delay={300} className="flex flex-col items-center group cursor-default">
+            {/* Minimalist Node */}
+            <div className="w-20 h-20 bg-white dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none flex items-center justify-center transition-transform duration-500 group-hover:scale-110 relative">
+              <span className="material-symbols-rounded text-3xl text-primary dark:text-blue-400">assignment</span>
+              <div className="absolute -top-1 -right-1 w-7 h-7 bg-blue-50 dark:bg-slate-700 rounded-full flex items-center justify-center text-xs font-bold text-primary border border-white dark:border-slate-600">02</div>
             </div>
-            <div className="w-[240px] text-center">
-              <h3 className="font-display text-xl font-bold text-secondary dark:text-white mb-2">Plano individualizado</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+
+            {/* Text BELOW the node */}
+            <div className="absolute top-full mt-8 w-64 text-center">
+              <h3 className="text-xl font-bold text-secondary dark:text-white mb-2 leading-tight">Plano individualizado</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
                 Desenvolvimento de um protocolo de cuidados personalizado e exclusivo para suas necessidades.
               </p>
             </div>
           </Reveal>
+        </div>
 
-          {/* Step 3: UP (Text Top, Bubble Bottom) */}
-          <Reveal 
-            delay={500} 
-            className="absolute flex flex-col items-center z-10 w-[200px]" 
-            style={{ left: '650px', top: '0' }}
-          >
-            <div className="w-[240px] text-center mb-6">
-              <h3 className="font-display text-xl font-bold text-secondary dark:text-white mb-2">Acompanhamento</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+        {/* NODE 3 - TOP (Peak) */}
+        <div className="absolute top-[20%] left-[62.5%] -translate-x-1/2 -translate-y-1/2 z-10">
+          <Reveal delay={500} className="flex flex-col items-center group cursor-default">
+            {/* Text ABOVE the node */}
+            <div className="absolute bottom-full mb-8 w-64 text-center">
+              <h3 className="text-xl font-bold text-secondary dark:text-white mb-2 leading-tight">Acompanhamento</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
                 Monitoramento contínuo do progresso, com ajustes no tratamento conforme a evolução.
               </p>
             </div>
-             {/* Circle Container: Added bg-white and z-10 to mask the line behind */}
-            <div className="w-[200px] h-[200px] rounded-full relative z-10 glass border border-white/80 dark:border-slate-700 shadow-2xl flex items-center justify-center transition-transform hover:scale-105 duration-300 group bg-white dark:bg-slate-900">
-              <span className="absolute top-4 font-display text-6xl font-black text-primary/40 dark:text-primary/40 z-0">03</span>
-              <div className="relative z-10 text-primary dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
-                <span className="material-symbols-rounded text-7xl drop-shadow-lg text-accent">trending_up</span>
-              </div>
+
+            {/* Minimalist Node */}
+            <div className="w-20 h-20 bg-white dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none flex items-center justify-center transition-transform duration-500 group-hover:scale-110 relative">
+              <span className="material-symbols-rounded text-3xl text-primary dark:text-blue-400">trending_up</span>
+              <div className="absolute -top-1 -right-1 w-7 h-7 bg-blue-50 dark:bg-slate-700 rounded-full flex items-center justify-center text-xs font-bold text-primary border border-white dark:border-slate-600">03</div>
             </div>
           </Reveal>
+        </div>
 
-          {/* Step 4: DOWN (Bubble Top, Text Bottom) - Adjusted Top from 300px to 250px */}
-          <Reveal 
-            delay={700} 
-            className="absolute flex flex-col items-center z-10 w-[200px]" 
-            style={{ left: '950px', top: '250px' }}
-          >
-             {/* Circle Container: Added bg-white and z-10 to mask the line behind */}
-            <div className="w-[200px] h-[200px] rounded-full relative z-10 glass border border-white/80 dark:border-slate-700 shadow-2xl flex items-center justify-center transition-transform hover:scale-105 duration-300 mb-6 group bg-white dark:bg-slate-900">
-              <span className="absolute top-4 font-display text-6xl font-black text-primary/40 dark:text-primary/40 z-0">04</span>
-              <div className="relative z-10 text-primary dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
-                <span className="material-symbols-rounded text-7xl drop-shadow-lg text-accent">healing</span>
-              </div>
+        {/* NODE 4 - BOTTOM (Trough) */}
+        <div className="absolute top-[70%] left-[87.5%] -translate-x-1/2 -translate-y-1/2 z-10">
+          <Reveal delay={700} className="flex flex-col items-center group cursor-default">
+            {/* Minimalist Node */}
+            <div className="w-20 h-20 bg-white dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none flex items-center justify-center transition-transform duration-500 group-hover:scale-110 relative">
+              <span className="material-symbols-rounded text-3xl text-primary dark:text-blue-400">healing</span>
+              <div className="absolute -top-1 -right-1 w-7 h-7 bg-blue-50 dark:bg-slate-700 rounded-full flex items-center justify-center text-xs font-bold text-primary border border-white dark:border-slate-600">04</div>
             </div>
-            <div className="w-[240px] text-center">
-              <h3 className="font-display text-xl font-bold text-secondary dark:text-white mb-2">Cicatrização + Prevenção</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+
+            {/* Text BELOW the node */}
+            <div className="absolute top-full mt-8 w-64 text-center">
+              <h3 className="text-xl font-bold text-secondary dark:text-white mb-2 leading-tight">Cicatrização + Prevenção</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
                 Foco na cicatrização completa e implementação de estratégias para evitar novas lesões.
               </p>
             </div>
           </Reveal>
-
         </div>
+
       </div>
 
       {/* Footer / Call to Action */}
-      <footer className="text-center mt-8 md:mt-16 relative z-10">
+      <footer className="text-center mt-12 md:mt-16 relative z-10">
         <Reveal delay={800}>
-          <p className="text-lg text-secondary dark:text-white font-medium mb-6">
+          <p className="text-lg text-secondary dark:text-white font-medium mb-8">
             Quer saber como seria no seu caso? Fale com nossa equipe.
           </p>
           <a 

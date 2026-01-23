@@ -42,7 +42,16 @@ const treatmentsData = [
 const Treatments: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  
+  // Carousel Logic Refs
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isDown, setIsDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const animationRef = useRef<number | null>(null);
 
+  // Intersection Observer for fade-in animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -60,6 +69,76 @@ const Treatments: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Infinite Scroll & Drag Logic
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const scroll = () => {
+      if (!isDown && !isPaused && container) {
+        container.scrollLeft += 1; // Speed of auto-scroll
+
+        // Infinite Loop Logic
+        // We render the list 3 times. When we reach 2/3rds, we jump back to 1/3rd (start of the middle set)
+        // This assumes uniform width, but works well enough generally.
+        const oneSetWidth = container.scrollWidth / 3;
+        
+        if (container.scrollLeft >= oneSetWidth * 2) {
+            container.scrollLeft = oneSetWidth;
+        } else if (container.scrollLeft <= 0) {
+            container.scrollLeft = oneSetWidth;
+        }
+      }
+      animationRef.current = requestAnimationFrame(scroll);
+    };
+
+    // Initialize scroll position to the middle set for seamless bidirectional scroll
+    if (container.scrollLeft === 0) {
+        container.scrollLeft = container.scrollWidth / 3;
+    }
+
+    animationRef.current = requestAnimationFrame(scroll);
+
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [isDown, isPaused]);
+
+  // Mouse Drag Handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDown(true);
+    setIsPaused(true);
+    if (scrollContainerRef.current) {
+      setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+      setScrollLeft(scrollContainerRef.current.scrollLeft);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsDown(false);
+    setIsPaused(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDown(false);
+    setIsPaused(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDown || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll-fastness
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  // Touch Handlers (for pausing auto-scroll on mobile interaction)
+  const handleTouchStart = () => setIsPaused(true);
+  const handleTouchEnd = () => setIsPaused(false);
+
+  // Tripling the data for infinite scroll effect
+  const displayData = [...treatmentsData, ...treatmentsData, ...treatmentsData];
 
   return (
     <section id="tratamentos" ref={sectionRef} className="relative py-12 md:py-24 px-0 max-w-full overflow-hidden bg-slate-50 dark:bg-slate-900/50">
@@ -83,67 +162,71 @@ const Treatments: React.FC = () => {
         </div>
       </div>
 
-      {/* Animated Marquee Carousel */}
+      {/* Draggable Carousel */}
       <div className={`relative w-full transition-all duration-1000 delay-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Gradients to fade edges */}
         <div className="absolute left-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-r from-slate-50 dark:from-background-dark to-transparent z-20 pointer-events-none"></div>
         <div className="absolute right-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-l from-slate-50 dark:from-background-dark to-transparent z-20 pointer-events-none"></div>
         
-        {/* Marquee Container */}
-        <div className="flex overflow-hidden group">
-          {/* Increased padding (py-20) to prevent shadow clipping on hover */}
-          <div className="flex gap-4 md:gap-8 animate-marquee-slow hover:[animation-play-state:paused] py-12 md:py-20 pl-4">
-            {/* Render cards twice for infinite loop */}
-            {[...treatmentsData, ...treatmentsData].map((item, index) => (
-              <div 
-                key={index} 
-                // Added rounded-[2rem] to wrapper to prevent square corners during scale transform
-                className="flex-shrink-0 w-[280px] md:w-[350px] transform transition-all duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer rounded-[2rem] will-change-transform"
-              >
-                <div className="bg-white dark:bg-slate-800 rounded-[2rem] shadow-lg hover:shadow-2xl hover:shadow-primary/30 dark:hover:shadow-primary/20 overflow-hidden h-[400px] md:h-[450px] relative group border border-slate-100 dark:border-slate-700 transition-all flex flex-col">
+        {/* Scroll Container */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex gap-4 md:gap-8 overflow-x-auto py-12 md:py-20 pl-4 hide-scrollbar cursor-grab active:cursor-grabbing select-none"
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          {displayData.map((item, index) => (
+            <div 
+              key={index} 
+              className="flex-shrink-0 w-[280px] md:w-[350px] transform transition-transform duration-300 hover:scale-105"
+            >
+              <div className="bg-white dark:bg-slate-800 rounded-[2rem] shadow-lg hover:shadow-2xl hover:shadow-primary/30 dark:hover:shadow-primary/20 overflow-hidden h-full relative group border border-slate-100 dark:border-slate-700 flex flex-col">
+                
+                {/* Image Area - FIXED HEIGHT for consistency */}
+                <div className="h-64 md:h-72 w-full bg-blue-50 dark:bg-slate-900 relative overflow-hidden flex-shrink-0">
+                  <img 
+                    alt={item.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none" 
+                    src={item.image}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-80 z-10"></div>
                   
-                  {/* Image Area */}
-                  <div className="h-3/5 w-full bg-blue-50 dark:bg-slate-900 flex items-center justify-center p-0 relative overflow-hidden">
-                    <img 
-                      alt={item.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                      src={item.image}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-80 z-10"></div>
-                    
-                    {/* Floating Icon */}
-                    <div className="absolute top-4 right-4 z-20 bg-white/20 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/30">
-                      <span className="material-symbols-rounded text-3xl text-white">{item.icon}</span>
-                    </div>
+                  {/* Floating Icon */}
+                  <div className="absolute top-4 right-4 z-20 bg-white/20 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/30">
+                    <span className="material-symbols-rounded text-3xl text-white">{item.icon}</span>
+                  </div>
+                </div>
+
+                {/* Content Area */}
+                <div className="flex-1 p-6 flex flex-col justify-between bg-white dark:bg-slate-800">
+                  <div>
+                    <h3 className="text-lg md:text-xl font-bold text-secondary dark:text-white mb-2 leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
 
-                  {/* Content Area */}
-                  <div className="flex-1 p-6 relative flex flex-col justify-between bg-white dark:bg-slate-800">
-                    <div>
-                      <h3 className="text-lg md:text-xl font-bold text-secondary dark:text-white mb-2 leading-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
-                      <span className="text-xs font-bold text-primary tracking-wide uppercase">Saiba mais</span>
-                      <button className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-700 flex items-center justify-center text-secondary dark:text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                        <span className="material-symbols-rounded text-lg">arrow_forward</span>
-                      </button>
-                    </div>
+                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+                    <span className="text-xs font-bold text-primary tracking-wide uppercase">Saiba mais</span>
+                    <button className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-700 flex items-center justify-center text-secondary dark:text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <span className="material-symbols-rounded text-lg">arrow_forward</span>
+                    </button>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* CTA Section */}
-      <div className={`max-w-4xl mx-auto mt-12 md:mt-16 text-center px-4 relative z-10 transition-all duration-1000 delay-500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className={`max-w-4xl mx-auto mt-4 md:mt-8 text-center px-4 relative z-10 transition-all duration-1000 delay-500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <h3 className="text-lg md:text-xl font-semibold text-secondary dark:text-slate-200 mb-8">
           Não sabe identificar o tipo de ferida? <br/>
           <span className="text-primary dark:text-primary font-bold text-2xl mt-2 block">A avaliação resolve isso.</span>
