@@ -6,7 +6,7 @@ const HowItWorks: React.FC = () => {
     <section className="min-h-screen py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-blue-50/30 dark:from-background-dark dark:to-background-dark flex flex-col justify-center items-center overflow-hidden">
       
       {/* Header */}
-      <header className="text-center mb-12 lg:mb-20 max-w-4xl mx-auto relative z-10">
+      <header className="text-center mb-12 lg:mb-16 max-w-4xl mx-auto relative z-10">
         <Reveal>
           <span className="inline-block py-1 px-4 rounded-full bg-primary/10 text-primary font-bold text-xs tracking-wider mb-6 shadow-sm uppercase">
             Passo a Passo
@@ -89,11 +89,12 @@ const HowItWorks: React.FC = () => {
       </div>
 
       {/* DESKTOP TIMELINE (SVG Wave) - Hidden on Mobile */}
-      <div className="hidden lg:block w-full overflow-x-auto pb-12 px-4 hide-scrollbar">
-        <div className="relative w-[1200px] h-[600px] mx-auto">
+      <div className="hidden lg:block w-full overflow-x-auto pb-8 px-4 hide-scrollbar">
+        {/* Adjusted Height from 600px to 500px to prevent scrollbar issues */}
+        <div className="relative w-[1200px] h-[500px] mx-auto overflow-y-hidden">
           
           {/* SVG Wave Line Container - Set z-0 to be behind everything */}
-          <svg className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1200 600">
+          <svg className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1200 500">
             <defs>
               <linearGradient id="lineGradient" x1="0%" x2="100%" y1="0%" y2="0%">
                 <stop offset="0%" stopColor="#1E88C9" stopOpacity="0.4" /> {/* Brand Blue - Low Opacity */}
@@ -102,9 +103,9 @@ const HowItWorks: React.FC = () => {
               </linearGradient>
             </defs>
             
-            {/* 1. Base Path (The background wire) */}
+            {/* 1. Base Path (The background wire) - Adjusted Y max from 400 to 350 */}
             <path 
-              d="M 150,100 C 300,100 300,400 450,400 C 600,400 600,100 750,100 C 900,100 900,400 1050,400" 
+              d="M 150,100 C 300,100 300,350 450,350 C 600,350 600,100 750,100 C 900,100 900,350 1050,350" 
               fill="none" 
               stroke="url(#lineGradient)" 
               strokeLinecap="round" 
@@ -113,9 +114,9 @@ const HowItWorks: React.FC = () => {
               style={{ filter: 'blur(1px)' }}
             />
             
-            {/* 2. LED Pulse Path (The animated light) */}
+            {/* 2. LED Pulse Path (The animated light) - Adjusted Y max from 400 to 350 */}
             <path 
-              d="M 150,100 C 300,100 300,400 450,400 C 600,400 600,100 750,100 C 900,100 900,400 1050,400" 
+              d="M 150,100 C 300,100 300,350 450,350 C 600,350 600,100 750,100 C 900,100 900,350 1050,350" 
               fill="none" 
               stroke="white" 
               strokeLinecap="round" 
@@ -130,7 +131,7 @@ const HowItWorks: React.FC = () => {
             className="absolute flex flex-col items-center z-10 w-[200px]" 
             style={{ left: '50px', top: '0' }}
           >
-            <div className="w-[240px] text-center mb-8">
+            <div className="w-[240px] text-center mb-6">
               <h3 className="font-display text-xl font-bold text-secondary dark:text-white mb-2">Avaliação clínica completa</h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Análise detalhada da ferida, histórico médico e fatores que influenciam a cicatrização.
@@ -145,14 +146,14 @@ const HowItWorks: React.FC = () => {
             </div>
           </Reveal>
 
-          {/* Step 2: DOWN (Bubble Top, Text Bottom) */}
+          {/* Step 2: DOWN (Bubble Top, Text Bottom) - Adjusted Top from 300px to 250px */}
           <Reveal 
             delay={300} 
             className="absolute flex flex-col items-center z-10 w-[200px]" 
-            style={{ left: '350px', top: '300px' }}
+            style={{ left: '350px', top: '250px' }}
           >
              {/* Circle Container: Added bg-white and z-10 to mask the line behind */}
-            <div className="w-[200px] h-[200px] rounded-full relative z-10 glass border border-white/80 dark:border-slate-700 shadow-2xl flex items-center justify-center transition-transform hover:scale-105 duration-300 mb-8 group bg-white dark:bg-slate-900">
+            <div className="w-[200px] h-[200px] rounded-full relative z-10 glass border border-white/80 dark:border-slate-700 shadow-2xl flex items-center justify-center transition-transform hover:scale-105 duration-300 mb-6 group bg-white dark:bg-slate-900">
               <span className="absolute top-4 font-display text-6xl font-black text-primary/40 dark:text-primary/40 z-0">02</span>
               <div className="relative z-10 text-primary dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
                 <span className="material-symbols-rounded text-7xl drop-shadow-lg text-accent">assignment</span>
@@ -172,7 +173,7 @@ const HowItWorks: React.FC = () => {
             className="absolute flex flex-col items-center z-10 w-[200px]" 
             style={{ left: '650px', top: '0' }}
           >
-            <div className="w-[240px] text-center mb-8">
+            <div className="w-[240px] text-center mb-6">
               <h3 className="font-display text-xl font-bold text-secondary dark:text-white mb-2">Acompanhamento</h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Monitoramento contínuo do progresso, com ajustes no tratamento conforme a evolução.
@@ -187,14 +188,14 @@ const HowItWorks: React.FC = () => {
             </div>
           </Reveal>
 
-          {/* Step 4: DOWN (Bubble Top, Text Bottom) */}
+          {/* Step 4: DOWN (Bubble Top, Text Bottom) - Adjusted Top from 300px to 250px */}
           <Reveal 
             delay={700} 
             className="absolute flex flex-col items-center z-10 w-[200px]" 
-            style={{ left: '950px', top: '300px' }}
+            style={{ left: '950px', top: '250px' }}
           >
              {/* Circle Container: Added bg-white and z-10 to mask the line behind */}
-            <div className="w-[200px] h-[200px] rounded-full relative z-10 glass border border-white/80 dark:border-slate-700 shadow-2xl flex items-center justify-center transition-transform hover:scale-105 duration-300 mb-8 group bg-white dark:bg-slate-900">
+            <div className="w-[200px] h-[200px] rounded-full relative z-10 glass border border-white/80 dark:border-slate-700 shadow-2xl flex items-center justify-center transition-transform hover:scale-105 duration-300 mb-6 group bg-white dark:bg-slate-900">
               <span className="absolute top-4 font-display text-6xl font-black text-primary/40 dark:text-primary/40 z-0">04</span>
               <div className="relative z-10 text-primary dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
                 <span className="material-symbols-rounded text-7xl drop-shadow-lg text-accent">healing</span>

@@ -3,10 +3,10 @@ import { Reveal } from './Reveal';
 
 const Patients: React.FC = () => {
   return (
-    <section id="pacientes" className="py-12 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white dark:bg-background-dark transition-colors duration-300">
-      {/* Background Blobs */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-secondary/5 dark:bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+    <section id="pacientes" className="py-12 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-secondary transition-colors duration-300">
+      {/* Background Blobs - Adjusted for Dark Background */}
+      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none mix-blend-screen"></div>
+      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none mix-blend-screen"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         
@@ -15,17 +15,17 @@ const Patients: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-3xl">
               <Reveal>
-                <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-bold tracking-wide uppercase shadow-sm">
+                <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-white/10 text-white border border-white/20 text-sm font-bold tracking-wide uppercase shadow-sm">
                   Pacientes
                 </span>
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-secondary dark:text-white leading-tight">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
                   PARA QUEM É O <br className="hidden sm:block"/> TRATAMENTO?
                 </h2>
               </Reveal>
             </div>
             <div className="max-w-lg md:text-right md:pb-2">
               <Reveal delay={200}>
-                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                <p className="text-lg text-blue-100 leading-relaxed font-medium">
                   Nossa abordagem especializada é projetada para resolver casos complexos onde tratamentos convencionais falharam.
                 </p>
               </Reveal>
@@ -34,146 +34,99 @@ const Patients: React.FC = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           
           {/* Card 1: Idosos */}
           <Reveal delay={0} className="h-full">
-            <div className="group flex flex-col h-full bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  alt="Mãos de uma pessoa idosa segurando as mãos de um cuidador" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2kZD9VEwQ84HHlqMiZF8HN0K1V79aNAC_Gt8YpWRwic5Z144Hf2Ta7b-dWZAF1iQTBoClh6GP2JsmCapUjBMAziD5i90qEH_jTADKcEOJoHfsFvHDy9xlbKVSLeca40Ook-8Y_yvNyo2n1I2uyYC9Ripy3VR3dd0pMmkZhJ2F3s1Km-kb0O9KXKyxXHQQnRy_Jp9kSd2pGOIG0KuOWbf4aOkLYI_1frujz3Sae9jJY2iU3IY9jLbFotXFFdw6dGPztKE5GqFBFsK1"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 to-transparent opacity-80"></div>
-              </div>
-              <div className="p-6 md:p-8 flex flex-col flex-grow">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Sênior</span>
-                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">Cuidado Especial</span>
+            <div className="group flex flex-col h-full bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 p-8">
+              <div className="flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-white/10 text-white border border-white/10">Sênior</span>
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-blue-500/20 text-blue-200 border border-blue-500/20">Cuidado Especial</span>
                 </div>
-                <h3 className="text-2xl font-bold text-secondary dark:text-white mb-3 group-hover:text-primary transition-colors">Pacientes Idosos</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6 flex-grow">
+                <div className="mb-4">
+                   <span className="material-symbols-rounded text-4xl text-primary mb-4 block">elderly</span>
+                   <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">Pacientes Idosos</h3>
+                </div>
+                <p className="text-blue-100/80 leading-relaxed flex-grow">
                   Pele fragilizada que requer atenção redobrada e técnicas não-invasivas para acelerar a cicatrização sem causar dor adicional.
                 </p>
-                <div className="flex items-center text-sm font-bold text-secondary dark:text-slate-200">
-                  <img alt="Dra. Helena" className="w-8 h-8 rounded-full mr-3 border-2 border-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsfklBZ-ZctKONMcCHwgf1TOItpy6ZznDEDmY6mYTkl_xjBb_KLp0IAzyNb8oTpLnMM8JgE2f3PFqqNoR8n5hLHGFrY5SapUuhMN7bSad-DFjf-P0vawLOCMF9ogSCMtSBhsng8b0p_w0mmqKikEdxDMGUEbzq_M1RSo3eFCucWE60xXiK63aUKI-SCI1nGEumvdl6f7fHLetwHAVEo82G3Icq2xdktC4SOSZUah8lfBe_wMep8EUlqBna5dK77qyM2Aj1B4OB3H--" />
-                  <span>Recomendado por Dra. Helena</span>
-                </div>
               </div>
             </div>
           </Reveal>
 
           {/* Card 2: Diabéticos */}
           <Reveal delay={100} className="h-full">
-            <div className="group flex flex-col h-full bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  alt="Medição de glicose para paciente diabético" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRYEuqi_QXCC9eOYrqnWzy6iCUZoGVGNTuPmp-3KE8xWHbzfQsMfO6KKrVYJhzoXfI9j3h-WO3WEENqtnAIlm7ly8UwUDcJaVjjjjsIZ59k91sW-KofPn6b2zUaeKtjKPKI4NnQGoPzazYdEHAJo3GCQZhYvyiFJ91GwFK8uTK6Zr3OWMgmkoHiLnIBtYRnKeucTVBtO4q3b8EW-6F0Z2aPMU-D6T3UP_ssuYqaCR4euaP3bLOYLCNwBJaZqPG6d91Hy5q3E5UIU5O"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 to-transparent opacity-80"></div>
-              </div>
-              <div className="p-6 md:p-8 flex flex-col flex-grow">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Diabetes</span>
-                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300">Pé Diabético</span>
+            <div className="group flex flex-col h-full bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 p-8">
+              <div className="flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-white/10 text-white border border-white/10">Diabetes</span>
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-emerald-500/20 text-emerald-200 border border-emerald-500/20">Pé Diabético</span>
                 </div>
-                <h3 className="text-2xl font-bold text-secondary dark:text-white mb-3 group-hover:text-primary transition-colors">Pacientes Diabéticos</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6 flex-grow">
+                <div className="mb-4">
+                   <span className="material-symbols-rounded text-4xl text-emerald-400 mb-4 block">glucose</span>
+                   <h3 className="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">Pacientes Diabéticos</h3>
+                </div>
+                <p className="text-blue-100/80 leading-relaxed flex-grow">
                   Tratamento focado na prevenção de amputações e controle rigoroso de infecções em úlceras de difícil cicatrização.
                 </p>
-                <div className="flex items-center text-sm font-bold text-secondary dark:text-slate-200">
-                  <img alt="Dr. Ricardo" className="w-8 h-8 rounded-full mr-3 border-2 border-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT4JJuNhTqmIY2gVBrmtgcq3zcuiFtZwzBFi5j-ZwrCvsO61vb0JclkVE-lANU7yENLNcsMU1Z6p7DteUe08sGhXgK3B6hHhlIlaiRrozNDqz-2QHt6A3CRDTZcx4Lwz0XM3NZKtbQronZBNJ_di8Jkcz8dCRGC_Xgs5oofBUfoEVrbDdMaUBSLcXhgi6jJJKxvEP7rlosQsEqNKttfCrw--R65V6UWmWrgtaLtM57xw6g9M11UE3QVMAJFVR5kY_48c5wKmE0emIc" />
-                  <span>Recomendado por Dr. Ricardo</span>
-                </div>
               </div>
             </div>
           </Reveal>
 
           {/* Card 3: Problemas Circulatórios */}
           <Reveal delay={200} className="h-full">
-            <div className="group flex flex-col h-full bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  alt="Exame vascular nas pernas" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsf69d_yXgiRunYIMHF8cx9aQKIvFiUdccb7Ljoh3L53G_stLrNJgZArBArY10MvxKdAMBUrkC09kJuwZOzk7G3oVxon3RpPEUqTCndHmoUvfDaZJHjcHXhc220SFHjv5R5OZL5oebt5G8L3iKXrBf6ZYhDtnVawCeIGcFeQrmRPhaDTSxup8-qurl1tjSH5THd9xEzGyCFR8mDjpuGcE-QQc6Cb6901XI3t0Y3B155P2QYPO8IzXiZLKYBZgW40WJ6s0GehAgzJCs"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 to-transparent opacity-80"></div>
-              </div>
-              <div className="p-6 md:p-8 flex flex-col flex-grow">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Circulação</span>
-                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300">Vascular</span>
+            <div className="group flex flex-col h-full bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 p-8">
+              <div className="flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-white/10 text-white border border-white/10">Circulação</span>
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-red-500/20 text-red-200 border border-red-500/20">Vascular</span>
                 </div>
-                <h3 className="text-2xl font-bold text-secondary dark:text-white mb-3 group-hover:text-primary transition-colors">Problemas Circulatórios</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6 flex-grow">
+                <div className="mb-4">
+                   <span className="material-symbols-rounded text-4xl text-red-400 mb-4 block">bloodtype</span>
+                   <h3 className="text-2xl font-bold text-white group-hover:text-red-400 transition-colors">Problemas Circulatórios</h3>
+                </div>
+                <p className="text-blue-100/80 leading-relaxed flex-grow">
                   Soluções para úlceras venosas e arteriais, focando na melhoria do fluxo sanguíneo local e regeneração tecidual.
                 </p>
-                <div className="flex items-center text-sm font-bold text-secondary dark:text-slate-200">
-                  <img alt="Dra. Sofia" className="w-8 h-8 rounded-full mr-3 border-2 border-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC67Iv5EMSY_-EH2NQFIDgaFZsdJSxlEhghHdWFYdSjcu1tLFSYDZBFIR5bHbujduupKrD4zh0CwftRlQ21jSydR-U2UbcGskZYjl9hiTxwZzBr1ou2NzpI7iY7kFJpgdFeF9ibnbT-9KOhcrHvTIWMIUhkqDlbl7kUTHCiR3E4YXn0jAXOcu_z7SdIevqVLC4agOqScq8ueUOkDk1TO8SM0byRzhA8lRXLvO0cqyLjRQCaS_7dVW3ruw3WZEkDhZaMx_s5Jmtoq2XV" />
-                  <span>Recomendado por Dra. Sofia</span>
-                </div>
               </div>
             </div>
           </Reveal>
 
           {/* Card 4: Feridas Crônicas */}
           <Reveal delay={300} className="h-full">
-            <div className="group flex flex-col h-full bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  alt="Close de curativo avançado em ferida" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj21QgS5Ry27Dwy1gLTZxyR7vtBHemkVJtcV5EGm-ob5EKVH5XNrVQZH5kL8Mz3jbGF29CRJpmaXQReZ6ehZ3lc3R8qAeqJD0sjJ6Ug2EZCyXLRHFdrtZpeqLZBkO2ryIERbrTpyIQ-d62fvzw_eybBKZe8ulZcql2M9v_UhM8yLaGTSItSDtzIUnEJZoiDRSrTkhtPIag1e_b_hli4IAIuUcBzQ4-soRX0EWnIii5rQFsw1wLhuXmSVYIY2fdD3c4qMUI1Ix8ihpw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 to-transparent opacity-80"></div>
-              </div>
-              <div className="p-6 md:p-8 flex flex-col flex-grow">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Crônico</span>
-                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300">Longa Duração</span>
+            <div className="group flex flex-col h-full bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 p-8">
+              <div className="flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-white/10 text-white border border-white/10">Crônico</span>
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-purple-500/20 text-purple-200 border border-purple-500/20">Longa Duração</span>
                 </div>
-                <h3 className="text-2xl font-bold text-secondary dark:text-white mb-3 group-hover:text-primary transition-colors">Feridas Crônicas</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6 flex-grow">
+                <div className="mb-4">
+                   <span className="material-symbols-rounded text-4xl text-purple-400 mb-4 block">history</span>
+                   <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Feridas Crônicas</h3>
+                </div>
+                <p className="text-blue-100/80 leading-relaxed flex-grow">
                   Para lesões que persistem há meses ou anos, utilizamos terapias regenerativas avançadas para reativar a cicatrização.
                 </p>
-                <div className="flex items-center text-sm font-bold text-secondary dark:text-slate-200">
-                  <img alt="Dr. Carlos" className="w-8 h-8 rounded-full mr-3 border-2 border-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDGCVBxbtIIatNhUuhmCvsZg2xD4kMmBStsMGUpsDCfFLh3Z_5UC7_vplUXn-h8Pgv3o6Jwqx7s75ocqgNeGtpcC1nZBVDVTn1Il-mDIlMD2qK1K1eQTwPwobG4NWXFT-AUCqr_5-uDh7Mhnm85_lj88kwTMT6y98uyTTnBdJ3qucSRJUvhbgMQqgII3y46BkzhswniG8NeTQA5YIp7FFD4grkMBUGzeoeSwulml4zWGT7bllyQTkJV-kKaPiXWdhP_RyzeD6_KKjl" />
-                  <span>Recomendado por Dr. Carlos</span>
-                </div>
               </div>
             </div>
           </Reveal>
 
           {/* Card 5: Falha em Tratamentos Anteriores (Double Width) */}
           <Reveal delay={400} className="md:col-span-2 lg:col-span-2 h-full">
-            <div className="group flex flex-col h-full bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
-              <div className="grid md:grid-cols-2 h-full">
-                <div className="relative h-64 md:h-full overflow-hidden">
-                  <img 
-                    alt="Médico consultando paciente com esperança" 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlwJkTQhotM2npk_RiT2-EIOcvzbbMK6D2rb7-i9xaU0Gkw7vngykEn10-4z02RyWxxuvbDGpxXdTFgiMH5g1eZVoxd1_1yAdxWiwOCzZeOIbbObtlCQdks7RwrkKuIjYLeGkXlULiXe-1xA3Hv8H1pa0DMr_ZrmBTQZtTaAeA-kcfBmUPP4NbQqFQ2F-6o0hGqlehfXTNgwi0JRaJyg8wm7VapuRpiUTUtqhZNfbazVR4213QzozmyDFRG8yGTYP01lZXsnbqnQp2"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-secondary/40 to-transparent"></div>
+            <div className="group flex flex-col h-full bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 p-8">
+              <div className="flex flex-col justify-center h-full">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-white/10 text-white border border-white/10">Recuperação</span>
+                  <span className="px-3 py-1 text-xs font-bold rounded-md bg-orange-500/20 text-orange-200 border border-orange-500/20">Segunda Opinião</span>
                 </div>
-                <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 text-xs font-bold rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Recuperação</span>
-                    <span className="px-3 py-1 text-xs font-bold rounded-md bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300">Segunda Opinião</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-secondary dark:text-white mb-3 group-hover:text-primary transition-colors">Falha em Tratamentos Anteriores</h3>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                    Especializados em casos onde pomadas comuns e curativos simples não funcionaram. Oferecemos uma nova perspectiva clínica e tecnológica para o seu caso.
-                  </p>
-                  <div className="flex items-center text-sm font-bold text-secondary dark:text-slate-200">
-                    <img alt="Dra. Ana" className="w-8 h-8 rounded-full mr-3 border-2 border-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-qeRHvyWdzYrjUUriLgwiDNKi6KgycrnSyBklUdJSML3yHivljyLuRgylGjEsoxzyPoA-4Cc8I6SLgeIGxgBt3w_fdvfYn31Qv_cwSq6xm51lVSBisaWbk6dyBj_3q6dtZQFeghC1-3k4ngda79GGOxJ_nKGerM3WFf-q6cwhP94Ync7uG48FKYlYq10iY8_FPNfvBLa1fwCey-rSsxOfPwYFsdHw7YUAotxIQfFqIEOIshB51cr0ln7hFdUuIHAXDkPX46QxL_qI" />
-                    <span>Recomendado por Dra. Ana</span>
-                  </div>
+                <div className="mb-4">
+                    <span className="material-symbols-rounded text-4xl text-orange-400 mb-4 block">medical_services</span>
+                    <h3 className="text-2xl font-bold text-white group-hover:text-orange-400 transition-colors">Falha em Tratamentos Anteriores</h3>
                 </div>
+                <p className="text-blue-100/80 leading-relaxed max-w-2xl">
+                  Especializados em casos onde pomadas comuns e curativos simples não funcionaram. Oferecemos uma nova perspectiva clínica e tecnológica para o seu caso, focando no que realmente impede o fechamento da lesão.
+                </p>
               </div>
             </div>
           </Reveal>
@@ -184,25 +137,25 @@ const Patients: React.FC = () => {
         <Reveal delay={600}>
           <div className="mt-12 lg:mt-24 text-center">
             <div className="inline-flex flex-col items-center max-w-2xl mx-auto">
-              <p className="text-xl md:text-2xl font-semibold text-secondary dark:text-white mb-8">
+              <p className="text-xl md:text-2xl font-semibold text-white mb-8">
                 Se você está aqui, provavelmente já passou do ponto de esperar.
               </p>
               <a 
                 className="
                   relative overflow-hidden
-                  bg-gradient-to-r from-secondary to-primary
+                  bg-gradient-to-r from-[#25D366] to-[#128C7E]
                   text-white
                   px-10 py-4 rounded-full
                   font-bold text-lg
                   whitespace-nowrap
-                  shadow-[0_10px_25px_-5px_rgba(30,136,201,0.4)]
-                  hover:shadow-[0_20px_35px_-5px_rgba(30,136,201,0.5)]
+                  shadow-[0_10px_25px_-5px_rgba(37,211,102,0.4)]
+                  hover:shadow-[0_20px_35px_-5px_rgba(37,211,102,0.5)]
                   hover:-translate-y-1
                   transition-all duration-300
                   group
                   w-full sm:w-auto
                   flex items-center justify-center gap-3
-                  border-t border-white/20
+                  border border-white/20
                 " 
                 href="#"
               >

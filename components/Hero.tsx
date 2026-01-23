@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
             {/* Doctor Image */}
             <div className="relative z-10 w-full h-full rounded-t-[150px] lg:rounded-t-[250px] rounded-b-[50px] lg:rounded-b-[100px] overflow-hidden shadow-2xl shadow-blue-900/10 dark:shadow-none">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYvqzEvsUAbvuYKLZZv1qjyp398rzamaVmeFxSaNVkvUscmlWhTd5lD0kpxOYG0JecmlBhLbFssbR2uhk3TvDjZoMMAvVc209xjyY_ejOmmB02fDPf8423fIg8H2hjP-gep1Rh-zVzfWlRSLMsqytHde9ul8f_k1gyQS4JQEEYO1vhar6pdEqSqjRMM2Wmkr1XnPlV0c4oM9eTDM4FtArKGPrPV7RSNxQ33zlS_R9BMuv5Uh0JFoHwY6t7QhD8VOJgGlFuc1NgT3Nm"
+                src="https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem01.jpg"
                 alt="Dra. Isabella - Especialista em Feridas"
                 className="w-full h-full object-cover object-top"
               />
@@ -116,24 +116,11 @@ const Hero: React.FC = () => {
               </div>
             </div>
 
-            {/* Desktop Only: Stats (Card 1 - Top Right) */}
-            <div className="hidden lg:block absolute top-20 right-0 glass p-4 rounded-2xl shadow-xl shadow-blue-100/50 dark:shadow-none animate-float z-20 text-center" style={{ animationDelay: '0.5s' }}>
+            {/* Desktop Only: Stats (Card 1 - Top Right) - Adjusted Position */}
+            <div className="hidden lg:block absolute top-20 -right-24 glass p-4 rounded-2xl shadow-xl shadow-blue-100/50 dark:shadow-none animate-float z-20 text-center" style={{ animationDelay: '0.5s' }}>
               <div className="text-2xl font-black text-secondary dark:text-blue-400">+5.000</div>
               <div className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-2">Curativos Realizados</div>
               <span className="material-symbols-rounded text-accent text-3xl">clinical_notes</span>
-            </div>
-
-            {/* Desktop Only: Profile (Card 3 - Top Left) */}
-            <div className="hidden lg:flex absolute top-10 -left-10 glass p-2 pr-6 rounded-full shadow-xl shadow-blue-100/50 dark:shadow-none animate-float z-20 items-center gap-3" style={{ animationDelay: '1.2s' }}>
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZi2Vl-wTWlZdShIcwmSnprkUabNXtt2Xhq5Xo4M3oDsMBUHTpK6fmflFuTB8FWkO5fHxn8IPKZJO5ze17eWM5BvlOdTTbrMG9EfkgHPPLkx1xYJJzkFYeg6EZX3Isndoxy6oFO42JbWPEXbTNn_cJVSFVyzR7xfllf-uUqIFtqiXwk-t5wKoLPxU0mxhlqIAdlJxRiAytpgCPwyyMb0KPuI1a6XN-ZnyclDziZUiQua1jCPeilp35GgagOdUuM7QkpdC4xSKnJFwm"
-                alt="Dra. Isabella"
-                className="w-10 h-10 rounded-full object-cover"
-              />
-              <div>
-                <div className="text-xs font-bold text-secondary dark:text-white">@dra_isabella</div>
-                <div className="text-[9px] text-slate-500">Especialista em Feridas</div>
-              </div>
             </div>
 
             {/* Background Decorative Graphic (Desktop) */}

@@ -5,37 +5,37 @@ const treatmentsData = [
     title: "Feridas Crônicas",
     description: "Lesões que não cicatrizam.",
     icon: "healing",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB3daGhnovr2WRuZHXG4lcSUDpZJnNxwWoEFFN9H2kAkY7gmIzgjXrqTBxp2AmFA6b7RgpKz3W9NH05IJ9mt-ejKrN1qSC-OoZgiweOVyLxRvbKcuqR0lqCdbSnIqTQRAZtnPWxNRK_J1GT9a1DBBIcHPX8kn-IRuivxdwd4OlMlDIHU79-KnsdX9gsQN5_efjMlmy_EOvM65xKq-8d2cRhprgmOJc0Fxmp5jZ6SNZMJlr5aY7Pn8ibsW6d2Hp5hty172xgr4CT_bpU"
+    image: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem03_feridas_cronicas.webp"
   },
   {
     title: "Feridas em Diabéticos",
     description: "Pé diabético e risco de complicações.",
     icon: "glucose",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAHTRX-DBAb7ltwPnKCtzUYg1KdKM5nEavy9ZCX7RLCVCphVwb3Pza03Y0jbj0wE2eCh0ruVVjwgyosnAOpg8gnq7Yed_Mu9NRTJuDw-J4aqcEKApoLh2e--HlsEMCCt7biSHjHv5FLNpyMWT0Lln0WLuHLBIWao4UXbjeY8W5eVNNj2Px-1EBpOnqVwDtrmY5hHK9AHs-G68YeP7Rx97OY6eh_ms45X5YABSNAbdwlSlXaQtAdQQcfkUOHI-dOLx3-TsXrbQc7wkJ5"
+    image: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem05_feridas_diabeticos.jpeg"
   },
   {
     title: "Feridas por Má Circulação",
     description: "Tratamento especializado vascular.",
     icon: "bloodtype",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAlZ_WgEPUhkEGV9NwVJ2D7HdUxP8vDxr_iHjvLmJqls8Ihi6GPDliauhmpl1xC8i7US9aG128yZpgc6hBcHZXSUesvygK7MRmGnRVQujr7nbqH_x3qE0QxSWga8blS5zHB8W4J0Z6V0x34IATYdfP73xot59KnyZB_MDt9lL7vmfDQHDflYeVi1_KmWAoULz8UGJjtIQK2RGQAb7Uc20ngJVONs0rJromPkc13qc6S3DCO_bWQjAVVhDD50CgWfrWUpZsl_rIZoJCB"
+    image: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem06_feridas_macirculacao.webp"
   },
   {
     title: "Feridas Pós-Cirúrgicas",
     description: "E de difícil cicatrização.",
     icon: "medical_services",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB3daGhnovr2WRuZHXG4lcSUDpZJnNxwWoEFFN9H2kAkY7gmIzgjXrqTBxp2AmFA6b7RgpKz3W9NH05IJ9mt-ejKrN1qSC-OoZgiweOVyLxRvbKcuqR0lqCdbSnIqTQRAZtnPWxNRK_J1GT9a1DBBIcHPX8kn-IRuivxdwd4OlMlDIHU79-KnsdX9gsQN5_efjMlmy_EOvM65xKq-8d2cRhprgmOJc0Fxmp5jZ6SNZMJlr5aY7Pn8ibsW6d2Hp5hty172xgr4CT_bpU"
+    image: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem07_feridas_p%C3%B3s_cirurgia.jpg"
   },
   {
     title: "Lesões por Pressão",
     description: "Em pessoas acamadas ou com mobilidade reduzida.",
     icon: "bed",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAHTRX-DBAb7ltwPnKCtzUYg1KdKM5nEavy9ZCX7RLCVCphVwb3Pza03Y0jbj0wE2eCh0ruVVjwgyosnAOpg8gnq7Yed_Mu9NRTJuDw-J4aqcEKApoLh2e--HlsEMCCt7biSHjHv5FLNpyMWT0Lln0WLuHLBIWao4UXbjeY8W5eVNNj2Px-1EBpOnqVwDtrmY5hHK9AHs-G68YeP7Rx97OY6eh_ms45X5YABSNAbdwlSlXaQtAdQQcfkUOHI-dOLx3-TsXrbQc7wkJ5"
+    image: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem08_feridas_pressao.jpg"
   },
   {
     title: "Feridas Infectadas",
     description: "Com sinais de alerta.",
     icon: "coronavirus",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAlZ_WgEPUhkEGV9NwVJ2D7HdUxP8vDxr_iHjvLmJqls8Ihi6GPDliauhmpl1xC8i7US9aG128yZpgc6hBcHZXSUesvygK7MRmGnRVQujr7nbqH_x3qE0QxSWga8blS5zHB8W4J0Z6V0x34IATYdfP73xot59KnyZB_MDt9lL7vmfDQHDflYeVi1_KmWAoULz8UGJjtIQK2RGQAb7Uc20ngJVONs0rJromPkc13qc6S3DCO_bWQjAVVhDD50CgWfrWUpZsl_rIZoJCB"
+    image: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem04_feridas_infectadas.jpeg"
   }
 ];
 

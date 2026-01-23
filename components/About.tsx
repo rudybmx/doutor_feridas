@@ -18,27 +18,24 @@ const About: React.FC = () => {
                 <img 
                   alt="Modern medical facility in São Bernardo do Campo" 
                   className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNiMoPkxOY_OTrzgoGioljXI37zJk6_9PanLVpGv3cv-KvKd7OrAJuzgKZM6_qQWBhoRs90pV9V3UcggVQ-C4ykhAXS2xk-qcoYAXhjCuMMFMW1aAzTXXh2e7RWT7xGwHAe83hwfkq4z0pEkVKA1TcrF4CyEEjv6zcgPddyckUnNDtLjugAHoCAEz5lIE8Y-A8cu-HnUquou82-4CEHPwvvQ0MjS0iwY6sL5hxBDfIyMAtEpwv-vPtKwTjBMRyyXwzJ1rJDIdcG-FI"
+                  src="https://docs.qozt.com.br/landing_pages/doutorFeridas/fachadaDoutorFeridas.png"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 to-transparent mix-blend-overlay"></div>
               </div>
             </Reveal>
             
-            {/* Floating Info Card - Hidden on Mobile to save space, shown lg+ */}
-            <div className="hidden lg:block absolute bottom-8 right-6 w-64 animate-float z-20">
+            {/* Floating Info Card - Adjusted: moved down (-bottom-10) and wider (w-80) */}
+            <div className="hidden lg:block absolute -bottom-10 right-4 w-80 animate-float z-20">
               <Reveal delay={300} direction="up">
-                <div className="glass-card p-6 rounded-3xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/10 bg-white/70 dark:bg-slate-800/70 backdrop-blur-md cursor-default">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white shadow-lg">
-                      <span className="material-symbols-rounded">medical_services</span>
+                <div className="glass-card p-5 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/10 bg-white/70 dark:bg-slate-800/70 backdrop-blur-md cursor-default">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white shadow-lg shrink-0">
+                      <span className="material-symbols-rounded text-xl">medical_services</span>
                     </div>
-                    <span className="text-xs font-bold tracking-wider text-slate-500 dark:text-slate-300 uppercase bg-white/50 dark:bg-black/20 px-2 py-1 rounded">Doutor Feridas</span>
+                    <span className="text-[10px] font-bold tracking-wider text-slate-500 dark:text-slate-300 uppercase bg-white/50 dark:bg-black/20 px-2 py-1 rounded whitespace-nowrap">Doutor Feridas</span>
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-xs font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wide">Desde</p>
-                    <p className="text-lg font-extrabold text-secondary dark:text-white">20/10/2015</p>
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-600">
+                  
+                  <div className="pt-3 border-t border-slate-200 dark:border-slate-600">
                     <p className="text-sm font-semibold text-slate-700 dark:text-slate-200 leading-tight">
                         Comprometidos com sua cicatrização e bem-estar.
                     </p>
@@ -78,8 +75,8 @@ const About: React.FC = () => {
                     relative overflow-hidden
                     bg-gradient-to-r from-secondary to-primary
                     text-white
-                    px-8 py-4 rounded-full
-                    font-bold text-lg
+                    px-10 py-5 rounded-full
+                    font-bold text-xl
                     whitespace-nowrap
                     shadow-[0_10px_25px_-5px_rgba(30,136,201,0.4)]
                     hover:shadow-[0_20px_35px_-5px_rgba(30,136,201,0.5)]
@@ -93,19 +90,10 @@ const About: React.FC = () => {
                   href="#"
                 >
                     <span className="relative z-10">Falar com a equipe</span>
-                    <span className="material-symbols-rounded relative z-10 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    <span className="material-symbols-rounded relative z-10 group-hover:translate-x-1 transition-transform text-2xl">arrow_forward</span>
                     {/* Shine effect overlay */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 </a>
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-secondary dark:text-primary transition-transform duration-300 hover:scale-110 cursor-pointer">
-                    <span className="material-symbols-rounded">call</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Alguma dúvida?</span>
-                    <span className="text-sm font-bold text-slate-900 dark:text-white">+55 11 99999-9999</span>
-                  </div>
-                </div>
               </div>
             </Reveal>
           </div>
