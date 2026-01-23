@@ -144,9 +144,9 @@ const Footer: React.FC = () => {
                 <span>Desenvolvido por</span>
                 <a href="https://op7franchising.com.br" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                   <img 
-                    src="https://docs.qozt.com.br/logo/op7/logo_azul_recorte.svg" 
+                    src="https://docs.qozt.com.br/logo/op7/logo_escrita_preta.svg" 
                     alt="OP7 Franchising" 
-                    className="h-6 w-auto" 
+                    className="h-10 w-auto" 
                   />
                 </a>
               </div>

@@ -163,6 +163,7 @@ const Treatments: React.FC = () => {
           w-full sm:w-auto
           flex items-center justify-center gap-3
           border-t border-white/20
+          mx-auto
         ">
           <span className="relative z-10 flex items-center gap-3">
             AGENDAR AVALIAÇÃO
