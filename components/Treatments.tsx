@@ -1,0 +1,179 @@
+import React, { useEffect, useRef, useState } from 'react';
+
+const treatmentsData = [
+  {
+    title: "Feridas Crônicas",
+    description: "Lesões que não cicatrizam.",
+    icon: "healing",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB3daGhnovr2WRuZHXG4lcSUDpZJnNxwWoEFFN9H2kAkY7gmIzgjXrqTBxp2AmFA6b7RgpKz3W9NH05IJ9mt-ejKrN1qSC-OoZgiweOVyLxRvbKcuqR0lqCdbSnIqTQRAZtnPWxNRK_J1GT9a1DBBIcHPX8kn-IRuivxdwd4OlMlDIHU79-KnsdX9gsQN5_efjMlmy_EOvM65xKq-8d2cRhprgmOJc0Fxmp5jZ6SNZMJlr5aY7Pn8ibsW6d2Hp5hty172xgr4CT_bpU"
+  },
+  {
+    title: "Feridas em Diabéticos",
+    description: "Pé diabético e risco de complicações.",
+    icon: "glucose",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAHTRX-DBAb7ltwPnKCtzUYg1KdKM5nEavy9ZCX7RLCVCphVwb3Pza03Y0jbj0wE2eCh0ruVVjwgyosnAOpg8gnq7Yed_Mu9NRTJuDw-J4aqcEKApoLh2e--HlsEMCCt7biSHjHv5FLNpyMWT0Lln0WLuHLBIWao4UXbjeY8W5eVNNj2Px-1EBpOnqVwDtrmY5hHK9AHs-G68YeP7Rx97OY6eh_ms45X5YABSNAbdwlSlXaQtAdQQcfkUOHI-dOLx3-TsXrbQc7wkJ5"
+  },
+  {
+    title: "Feridas por Má Circulação",
+    description: "Tratamento especializado vascular.",
+    icon: "bloodtype",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAlZ_WgEPUhkEGV9NwVJ2D7HdUxP8vDxr_iHjvLmJqls8Ihi6GPDliauhmpl1xC8i7US9aG128yZpgc6hBcHZXSUesvygK7MRmGnRVQujr7nbqH_x3qE0QxSWga8blS5zHB8W4J0Z6V0x34IATYdfP73xot59KnyZB_MDt9lL7vmfDQHDflYeVi1_KmWAoULz8UGJjtIQK2RGQAb7Uc20ngJVONs0rJromPkc13qc6S3DCO_bWQjAVVhDD50CgWfrWUpZsl_rIZoJCB"
+  },
+  {
+    title: "Feridas Pós-Cirúrgicas",
+    description: "E de difícil cicatrização.",
+    icon: "medical_services",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB3daGhnovr2WRuZHXG4lcSUDpZJnNxwWoEFFN9H2kAkY7gmIzgjXrqTBxp2AmFA6b7RgpKz3W9NH05IJ9mt-ejKrN1qSC-OoZgiweOVyLxRvbKcuqR0lqCdbSnIqTQRAZtnPWxNRK_J1GT9a1DBBIcHPX8kn-IRuivxdwd4OlMlDIHU79-KnsdX9gsQN5_efjMlmy_EOvM65xKq-8d2cRhprgmOJc0Fxmp5jZ6SNZMJlr5aY7Pn8ibsW6d2Hp5hty172xgr4CT_bpU"
+  },
+  {
+    title: "Lesões por Pressão",
+    description: "Em pessoas acamadas ou com mobilidade reduzida.",
+    icon: "bed",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAHTRX-DBAb7ltwPnKCtzUYg1KdKM5nEavy9ZCX7RLCVCphVwb3Pza03Y0jbj0wE2eCh0ruVVjwgyosnAOpg8gnq7Yed_Mu9NRTJuDw-J4aqcEKApoLh2e--HlsEMCCt7biSHjHv5FLNpyMWT0Lln0WLuHLBIWao4UXbjeY8W5eVNNj2Px-1EBpOnqVwDtrmY5hHK9AHs-G68YeP7Rx97OY6eh_ms45X5YABSNAbdwlSlXaQtAdQQcfkUOHI-dOLx3-TsXrbQc7wkJ5"
+  },
+  {
+    title: "Feridas Infectadas",
+    description: "Com sinais de alerta.",
+    icon: "coronavirus",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAlZ_WgEPUhkEGV9NwVJ2D7HdUxP8vDxr_iHjvLmJqls8Ihi6GPDliauhmpl1xC8i7US9aG128yZpgc6hBcHZXSUesvygK7MRmGnRVQujr7nbqH_x3qE0QxSWga8blS5zHB8W4J0Z6V0x34IATYdfP73xot59KnyZB_MDt9lL7vmfDQHDflYeVi1_KmWAoULz8UGJjtIQK2RGQAb7Uc20ngJVONs0rJromPkc13qc6S3DCO_bWQjAVVhDD50CgWfrWUpZsl_rIZoJCB"
+  }
+];
+
+const Treatments: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="tratamentos" ref={sectionRef} className="relative py-12 md:py-24 px-0 max-w-full overflow-hidden bg-slate-50 dark:bg-slate-900/50">
+      
+      {/* Header Content */}
+      <div className={`max-w-7xl mx-auto mb-12 md:mb-16 px-4 sm:px-6 lg:px-8 relative z-10 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="md:w-2/3">
+            <span className="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-4 shadow-sm border border-primary/20">
+              Tratamentos
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-secondary dark:text-white leading-tight uppercase">
+              Tratamentos para feridas em <br className="hidden md:block"/> São Bernardo do Campo
+            </h2>
+          </div>
+          <div className="md:w-1/3">
+            <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed font-medium">
+              Atendemos diferentes tipos de lesões, com foco em cicatrização e prevenção de complicações.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Animated Marquee Carousel */}
+      <div className={`relative w-full transition-all duration-1000 delay-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Gradients to fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-r from-slate-50 dark:from-background-dark to-transparent z-20 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-l from-slate-50 dark:from-background-dark to-transparent z-20 pointer-events-none"></div>
+        
+        {/* Marquee Container */}
+        <div className="flex overflow-hidden group">
+          {/* Increased padding (py-20) to prevent shadow clipping on hover */}
+          <div className="flex gap-4 md:gap-8 animate-marquee-slow hover:[animation-play-state:paused] py-12 md:py-20 pl-4">
+            {/* Render cards twice for infinite loop */}
+            {[...treatmentsData, ...treatmentsData].map((item, index) => (
+              <div 
+                key={index} 
+                // Added rounded-[2rem] to wrapper to prevent square corners during scale transform
+                className="flex-shrink-0 w-[280px] md:w-[350px] transform transition-all duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer rounded-[2rem] will-change-transform"
+              >
+                <div className="bg-white dark:bg-slate-800 rounded-[2rem] shadow-lg hover:shadow-2xl hover:shadow-primary/30 dark:hover:shadow-primary/20 overflow-hidden h-[400px] md:h-[450px] relative group border border-slate-100 dark:border-slate-700 transition-all flex flex-col">
+                  
+                  {/* Image Area */}
+                  <div className="h-3/5 w-full bg-blue-50 dark:bg-slate-900 flex items-center justify-center p-0 relative overflow-hidden">
+                    <img 
+                      alt={item.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                      src={item.image}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-80 z-10"></div>
+                    
+                    {/* Floating Icon */}
+                    <div className="absolute top-4 right-4 z-20 bg-white/20 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/30">
+                      <span className="material-symbols-rounded text-3xl text-white">{item.icon}</span>
+                    </div>
+                  </div>
+
+                  {/* Content Area */}
+                  <div className="flex-1 p-6 relative flex flex-col justify-between bg-white dark:bg-slate-800">
+                    <div>
+                      <h3 className="text-lg md:text-xl font-bold text-secondary dark:text-white mb-2 leading-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+                      <span className="text-xs font-bold text-primary tracking-wide uppercase">Saiba mais</span>
+                      <button className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-700 flex items-center justify-center text-secondary dark:text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span className="material-symbols-rounded text-lg">arrow_forward</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className={`max-w-4xl mx-auto mt-12 md:mt-16 text-center px-4 relative z-10 transition-all duration-1000 delay-500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <h3 className="text-lg md:text-xl font-semibold text-secondary dark:text-slate-200 mb-8">
+          Não sabe identificar o tipo de ferida? <br/>
+          <span className="text-primary dark:text-primary font-bold text-2xl mt-2 block">A avaliação resolve isso.</span>
+        </h3>
+        <button className="
+          relative overflow-hidden
+          bg-gradient-to-r from-secondary to-primary
+          text-white
+          px-10 py-5 rounded-full
+          font-bold text-lg
+          whitespace-nowrap
+          shadow-[0_10px_25px_-5px_rgba(30,136,201,0.4)]
+          hover:shadow-[0_20px_35px_-5px_rgba(30,136,201,0.5)]
+          hover:-translate-y-1
+          transition-all duration-300
+          group
+          w-full sm:w-auto
+          flex items-center justify-center gap-3
+          border-t border-white/20
+        ">
+          <span className="relative z-10 flex items-center gap-3">
+            AGENDAR AVALIAÇÃO
+            <span className="material-symbols-rounded text-xl group-hover:translate-x-1 transition-transform">calendar_month</span>
+          </span>
+          {/* Shine effect overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+        </button>
+      </div>
+    </section>
+  );
+};
+
+export default Treatments;
