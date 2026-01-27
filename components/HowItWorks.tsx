@@ -223,7 +223,9 @@ const HowItWorks: React.FC = () => {
             Quer saber como seria no seu caso? Fale com nossa equipe.
           </p>
           <a 
-            href="#" 
+            href="https://wa.me/5511974736662?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               relative overflow-hidden
               bg-gradient-to-r from-secondary to-primary

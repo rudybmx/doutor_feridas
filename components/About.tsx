@@ -87,7 +87,9 @@ const About: React.FC = () => {
                     flex items-center justify-center gap-3
                     border-t border-white/20
                   " 
-                  href="#"
+                  href="https://wa.me/5511974736662?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                     <span className="relative z-10">Falar com a equipe</span>
                     <span className="material-symbols-rounded relative z-10 group-hover:translate-x-1 transition-transform text-2xl">arrow_forward</span>

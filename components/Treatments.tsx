@@ -231,30 +231,35 @@ const Treatments: React.FC = () => {
           Não sabe identificar o tipo de ferida? <br/>
           <span className="text-primary dark:text-primary font-bold text-2xl mt-2 block">A avaliação resolve isso.</span>
         </h3>
-        <button className="
-          relative overflow-hidden
-          bg-gradient-to-r from-secondary to-primary
-          text-white
-          px-10 py-5 rounded-full
-          font-bold text-lg
-          whitespace-nowrap
-          shadow-[0_10px_25px_-5px_rgba(30,136,201,0.4)]
-          hover:shadow-[0_20px_35px_-5px_rgba(30,136,201,0.5)]
-          hover:-translate-y-1
-          transition-all duration-300
-          group
-          w-full sm:w-auto
-          flex items-center justify-center gap-3
-          border-t border-white/20
-          mx-auto
-        ">
+        <a 
+          className="
+            relative overflow-hidden
+            bg-gradient-to-r from-secondary to-primary
+            text-white
+            px-10 py-5 rounded-full
+            font-bold text-lg
+            whitespace-nowrap
+            shadow-[0_10px_25px_-5px_rgba(30,136,201,0.4)]
+            hover:shadow-[0_20px_35px_-5px_rgba(30,136,201,0.5)]
+            hover:-translate-y-1
+            transition-all duration-300
+            group
+            w-full sm:w-auto
+            flex items-center justify-center gap-3
+            border-t border-white/20
+            mx-auto
+          "
+          href="https://wa.me/5511974736662?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span className="relative z-10 flex items-center gap-3">
             AGENDAR AVALIAÇÃO
             <span className="material-symbols-rounded text-xl group-hover:translate-x-1 transition-transform">calendar_month</span>
           </span>
           {/* Shine effect overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-        </button>
+        </a>
       </div>
     </section>
   );

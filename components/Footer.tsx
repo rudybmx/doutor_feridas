@@ -38,8 +38,13 @@ const Footer: React.FC = () => {
                   </span>
                 </li>
                 <li className="flex flex-col items-center md:items-end gap-2 mt-2">
-                  <a href="#" className="flex items-center gap-2 font-semibold text-secondary dark:text-blue-300 hover:text-primary transition-colors text-lg">
-                    (11) 94722-0946
+                  <a 
+                    href="https://wa.me/5511974736662?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 font-semibold text-secondary dark:text-blue-300 hover:text-primary transition-colors text-lg"
+                  >
+                    (11) 97473-6662
                     <span className="material-symbols-rounded text-accent text-lg">chat</span>
                   </a>
                   <div className="flex items-center gap-2">

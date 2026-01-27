@@ -37,7 +37,11 @@ const Hero: React.FC = () => {
 
           <Reveal delay={400}>
             <div className="flex flex-col sm:flex-row items-center gap-6">
-              <button className="
+              <a 
+                href="https://wa.me/5511974736662?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
                 relative overflow-hidden
                 bg-gradient-to-r from-secondary to-primary
                 text-white
@@ -57,7 +61,7 @@ const Hero: React.FC = () => {
                 <span className="material-symbols-rounded relative z-10 group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 {/* Shine effect overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-              </button>
+              </a>
               
               <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">
                 <div className="flex -space-x-4">

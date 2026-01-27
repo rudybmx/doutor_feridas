@@ -151,29 +151,34 @@ const AlertSigns: React.FC = () => {
             <p className="text-slate-300 mb-10 max-w-lg mx-auto">
               Não espere o quadro se agravar. O tratamento especializado acelera a recuperação e devolve sua qualidade de vida.
             </p>
-            <button className="
-              relative overflow-hidden
-              bg-gradient-to-r from-secondary to-primary
-              text-white
-              px-8 py-4 rounded-full
-              font-bold text-lg
-              whitespace-nowrap
-              shadow-[0_10px_25px_-5px_rgba(30,136,201,0.4)]
-              hover:shadow-[0_20px_35px_-5px_rgba(30,136,201,0.5)]
-              hover:-translate-y-1
-              transition-all duration-300
-              group
-              w-full sm:w-auto
-              flex items-center justify-center gap-3
-              border-t border-white/20
-            ">
+            <a 
+              className="
+                relative overflow-hidden
+                bg-gradient-to-r from-secondary to-primary
+                text-white
+                px-8 py-4 rounded-full
+                font-bold text-lg
+                whitespace-nowrap
+                shadow-[0_10px_25px_-5px_rgba(30,136,201,0.4)]
+                hover:shadow-[0_20px_35px_-5px_rgba(30,136,201,0.5)]
+                hover:-translate-y-1
+                transition-all duration-300
+                group
+                w-full sm:w-auto
+                flex items-center justify-center gap-3
+                border-t border-white/20
+              "
+              href="https://wa.me/5511974736662?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span className="relative z-10 flex items-center gap-2">
                 <span className="material-symbols-rounded text-xl">calendar_today</span>
                 Agendar Avaliação
               </span>
               {/* Shine effect overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            </button>
+            </a>
           </div>
         </div>
       </Reveal>
